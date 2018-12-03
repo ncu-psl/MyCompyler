@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# test for Git
+# test for GitHub Desktop
 from flask import Flask
 app = Flask(__name__)
 @app.route("/")
