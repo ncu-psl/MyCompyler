@@ -16,9 +16,9 @@
         <div class="container">
             <h1>My Compiler 0.1</h1>
             <button class="btn btn-outline-secondary" type="button" id="c_lang" onclick="c_lang_slct()">C</button>
-            <button class="btn btn-outline-secondary" type="button" id="cpp_lang" onclick="">C++</button>
-            <button class="btn btn-outline-secondary" type="button" id="java_lang" onclick="">Java</button>
-            <button class="btn btn-outline-secondary" type="button" id="py_lang" onclick="">Python</button>
+            <button class="btn btn-outline-secondary" type="button" id="cpp_lang" onclick="cpp_lang_slct()">C++</button>
+            <button class="btn btn-outline-secondary" type="button" id="java_lang" onclick="java_lang_slct()">Java</button>
+            <button class="btn btn-outline-secondary" type="button" id="py_lang" onclick="py_lang_slct()">Python</button>
         </div>
     </div>
     <div class="container">
@@ -49,6 +49,10 @@
                 <br><br>
                 <!-- show after run_btn clicked -->
                 <button class="btn btn-success" type="button" id="run_btn" onclick="input()">Enter</button>
+                <br><br><br><br><br><br>
+                <button class="btn btn-primary" type="button" id="upload_btn" onclick="upload_file()">Upload</button>
+                <br>
+                <button class="btn btn-primary" type="button" id="download_btn" onclick="download_file()">Download</button>
             </div>
         </div>
     </div>
@@ -88,6 +92,10 @@
     function c_lang_slct(){
     	document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
     	// flag C selected and prepare to compile in C
+    }
+
+    function cpp_lang_slct(){
+    	document.getElementById("code_section").value = "#include<>";
     }
     </script>
 </body>
