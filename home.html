@@ -53,6 +53,7 @@
                 <button class="btn btn-primary" type="button" id="upload_btn" onclick="upload_file()">Upload</button>
                 <br>
                 <button class="btn btn-primary" type="button" id="download_btn" onclick="download_file()">Download</button>
+                <p id="lang"></p>
             </div>
         </div>
     </div>
@@ -85,17 +86,47 @@
         return true;
     }
 
+    var lang = 0;
+
     function show() {
+        // compile function not available
         document.getElementById("output_code").value = document.getElementById("code_section").value;
     }
 
-    function c_lang_slct(){
-    	document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
-    	// flag C selected and prepare to compile in C
+    function c_lang_slct() {
+        document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
+        lang = 1;
+        // flag C selected and prepare to compile in C
     }
 
-    function cpp_lang_slct(){
-    	document.getElementById("code_section").value = "#include<>";
+    function cpp_lang_slct() {
+        document.getElementById("code_section").value = "#include<iostream>\n\nint main(){\n\t\n}";
+        lang = 2;
+        // flag C++ selected and prepare to compile in C++
+    }
+
+    function java_lang_slct() {
+    	document.getElementById("code_section").value = "public static void main(){\n\t\n}";
+    	lang = 3;
+    	// flag java selected and prepare to compile in java
+    }
+
+    function py_lang_slct() {
+    	document.getElementById("code_section").value = "";
+    	lang = 4;
+    	// flag python selected and prepare to compile in python
+    }
+
+    function input(){
+    	// code in flask?
+    }
+
+    function upload_file(){
+
+    }
+
+    function download_file(){
+
     }
     </script>
 </body>
