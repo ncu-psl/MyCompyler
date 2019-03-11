@@ -46,7 +46,7 @@
                 </form>
                 <fieldset>
                     <label>Your Output here:</label>
-                    <textarea class="form-control" id="output_code" rows="6" disabled></textarea>
+                    <textarea class="form-control" id="output_section" rows="6" disabled></textarea>
                 </fieldset>
             </div>
             <div class="col-1">
@@ -91,11 +91,13 @@
 
     function show() {
         // compile function not available
-        document.getElementById("output_code").value = document.getElementById("code_section").value;
+        document.getElementById("output_section").value = document.getElementById("code_section").value;
     }
 
     function clearTextArea() {
         document.getElementById("code_section").value = null;
+        document.getElementById("input_section").value = null;
+        document.getElementById("output_section").value = null;
         document.getElementById("c_btn").className = "btn btn-outline-secondary";
         document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
         document.getElementById("java_btn").className = "btn btn-outline-secondary";
@@ -104,6 +106,8 @@
         document.getElementById("cpp_btn").disabled = false;
         document.getElementById("java_btn").disabled = false;
         document.getElementById("py_btn").disabled = false;
+        document.getElementById("list").value = '';
+
     }
 
     function c_lang_slct() {
@@ -114,7 +118,8 @@
         document.getElementById("cpp_btn").disabled = true;
         document.getElementById("java_btn").disabled = true;
         document.getElementById("py_btn").disabled = true;
-        document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
+        if (document.getElementById("code_section") == '')
+            document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
         lang = 1;
         // flag C selected and prepare to compile in C
     }
@@ -127,7 +132,8 @@
         document.getElementById("c_btn").disabled = true;
         document.getElementById("java_btn").disabled = true;
         document.getElementById("py_btn").disabled = true;
-        document.getElementById("code_section").value = "#include<iostream>\nusing namespace std;\n\nint main(){\n\t\n}";
+        if (document.getElementById("code_section") == '')
+            document.getElementById("code_section").value = "#include<iostream>\nusing namespace std;\n\nint main(){\n\t\n}";
         lang = 2;
         // flag C++ selected and prepare to compile in C++
     }
@@ -140,7 +146,8 @@
         document.getElementById("c_btn").disabled = true;
         document.getElementById("cpp_btn").disabled = true;
         document.getElementById("py_btn").disabled = true;
-        document.getElementById("code_section").value = "public class myClass{\n\tpublic static void main(){\n\t\n\t}\n}";
+        if (document.getElementById("code_section") == '')
+            document.getElementById("code_section").value = "public class myClass{\n\tpublic static void main(){\n\t\n\t}\n}";
     	lang = 3;
     	// flag java selected and prepare to compile in java
     }
@@ -153,7 +160,8 @@
         document.getElementById("c_btn").disabled = true;
         document.getElementById("cpp_btn").disabled = true;
         document.getElementById("java_btn").disabled = true;
-        document.getElementById("code_section").value = "# coding with MyCompiler\n\n";
+        if (document.getElementById("code_section") == '')
+            document.getElementById("code_section").value = "# coding with MyCompiler\n\n";
     	lang = 4;
     	// flag python selected and prepare to compile in python
     }
