@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# test for GitHub Desktop
-from flask import Flask
+from flask import Flask, request, render_template
 app = Flask(__name__)
+
+
 @app.route("/")
-def hello():
-    return "Hello World!"
-if __name__ == "__main__":
-    app.run()
+
+def index():
+         return "Hello, World! (PYTHON+FLASK)"
+
+if __name__ == '__main__':
+        app.run(debug=True)
