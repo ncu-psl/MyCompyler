@@ -118,7 +118,7 @@
         document.getElementById("cpp_btn").disabled = true;
         document.getElementById("java_btn").disabled = true;
         document.getElementById("py_btn").disabled = true;
-        if (document.getElementById("code_section") == '')
+        if (document.getElementById("code_section").value == '')
             document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
         lang = 1;
         // flag C selected and prepare to compile in C
@@ -132,7 +132,7 @@
         document.getElementById("c_btn").disabled = true;
         document.getElementById("java_btn").disabled = true;
         document.getElementById("py_btn").disabled = true;
-        if (document.getElementById("code_section") == '')
+        if (document.getElementById("code_section").value == '')
             document.getElementById("code_section").value = "#include<iostream>\nusing namespace std;\n\nint main(){\n\t\n}";
         lang = 2;
         // flag C++ selected and prepare to compile in C++
@@ -146,7 +146,7 @@
         document.getElementById("c_btn").disabled = true;
         document.getElementById("cpp_btn").disabled = true;
         document.getElementById("py_btn").disabled = true;
-        if (document.getElementById("code_section") == '')
+        if (document.getElementById("code_section").value == '')
             document.getElementById("code_section").value = "public class myClass{\n\tpublic static void main(){\n\t\n\t}\n}";
     	lang = 3;
     	// flag java selected and prepare to compile in java
@@ -160,7 +160,7 @@
         document.getElementById("c_btn").disabled = true;
         document.getElementById("cpp_btn").disabled = true;
         document.getElementById("java_btn").disabled = true;
-        if (document.getElementById("code_section") == '')
+        if (document.getElementById("code_section").value == '')
             document.getElementById("code_section").value = "# coding with MyCompiler\n\n";
     	lang = 4;
     	// flag python selected and prepare to compile in python
