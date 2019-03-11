@@ -26,11 +26,11 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-7">
                 <form>
                     <label>Your code here:</label>
                     <!-- get the code -->
-                    <textarea class="form-control" id="code_section" rows="13" onkeydown="insertTab(this, event);" autofocus></textarea>
+                    <textarea class="form-control" id="code_section" rows="13" onkeydown="insertTab(this, event);" autofocus style="font-family:courier;"></textarea>
                 </form>
                 <output id="list"></output>
             </div>
@@ -39,7 +39,7 @@
                 <!-- show compiled result -->
                 <button class="btn btn-primary" type="button" id="run_btn" onclick="show()">Run</button>
             </div>
-            <div class="col-5">
+            <div class="col-3">
                 <form>
                     <label>Your Input here:</label>
                     <textarea class="form-control" id="input_section" rows="5" onkeydown="insertTab(this, event);"></textarea>
