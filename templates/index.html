@@ -19,7 +19,8 @@
             <button class="btn btn-outline-secondary" type="button" id="cpp_btn" onclick="cpp_lang_slct()">C++</button>
             <button class="btn btn-outline-secondary" type="button" id="java_btn" onclick="java_lang_slct()">Java</button>
             <button class="btn btn-outline-secondary" type="button" id="py_btn" onclick="py_lang_slct()">Python</button>
-            <button class="btn btn-primary" type="button" id="import_btn" onclick="import_file()">Import</button>
+            <button class="btn btn-warning" type="button" id="clear_btn" onclick="clearTextArea()">Clear</button>
+            <button class="btn btn-primary" type="button" id="import_btn" onclick="files.click()">Import</button>
             <button class="btn btn-primary" type="button" id="export_btn" onclick="export_file()">Export</button>
         </div>
     </div>
@@ -52,7 +53,7 @@
                 <br><br>
                 <!-- show after run_btn clicked -->
                 <button class="btn btn-success" type="button" id="run_btn" onclick="input()">Enter</button>
-                <input type="file" id="files" name="files[]" multiple />
+                <input type="file" id="files" name="files[]" multiple style="display: none"/>
                 <p id="lang"></p>
             </div>
         </div>
@@ -93,11 +94,26 @@
         document.getElementById("output_code").value = document.getElementById("code_section").value;
     }
 
+    function clearTextArea() {
+        document.getElementById("code_section").value = null;
+        document.getElementById("c_btn").className = "btn btn-outline-secondary";
+        document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
+        document.getElementById("java_btn").className = "btn btn-outline-secondary";
+        document.getElementById("py_btn").className = "btn btn-outline-secondary";
+        document.getElementById("c_btn").disabled = false;
+        document.getElementById("cpp_btn").disabled = false;
+        document.getElementById("java_btn").disabled = false;
+        document.getElementById("py_btn").disabled = false;
+    }
+
     function c_lang_slct() {
         document.getElementById("c_btn").className = "btn btn-outline-secondary active";
         document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
         document.getElementById("java_btn").className = "btn btn-outline-secondary";
         document.getElementById("py_btn").className = "btn btn-outline-secondary";
+        document.getElementById("cpp_btn").disabled = true;
+        document.getElementById("java_btn").disabled = true;
+        document.getElementById("py_btn").disabled = true;
         document.getElementById("code_section").value = "#include<stdio.h>\n\nint main(){\n\t\n}";
         lang = 1;
         // flag C selected and prepare to compile in C
@@ -108,6 +124,9 @@
         document.getElementById("cpp_btn").className = "btn btn-outline-secondary active";
         document.getElementById("java_btn").className = "btn btn-outline-secondary";
         document.getElementById("py_btn").className = "btn btn-outline-secondary";
+        document.getElementById("c_btn").disabled = true;
+        document.getElementById("java_btn").disabled = true;
+        document.getElementById("py_btn").disabled = true;
         document.getElementById("code_section").value = "#include<iostream>\n\nint main(){\n\t\n}";
         lang = 2;
         // flag C++ selected and prepare to compile in C++
@@ -118,6 +137,9 @@
         document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
         document.getElementById("java_btn").className = "btn btn-outline-secondary active";
         document.getElementById("py_btn").className = "btn btn-outline-secondary";
+        document.getElementById("c_btn").disabled = true;
+        document.getElementById("cpp_btn").disabled = true;
+        document.getElementById("py_btn").disabled = true;
         document.getElementById("code_section").value = "public class myClass{\n\tpublic static void main(){\n\t\n\t}\n}";
     	lang = 3;
     	// flag java selected and prepare to compile in java
@@ -128,6 +150,9 @@
         document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
         document.getElementById("java_btn").className = "btn btn-outline-secondary";
         document.getElementById("py_btn").className = "btn btn-outline-secondary active";
+        document.getElementById("c_btn").disabled = true;
+        document.getElementById("cpp_btn").disabled = true;
+        document.getElementById("java_btn").disabled = true;
         document.getElementById("code_section").value = "# coding with MyCompiler\n\n";
     	lang = 4;
     	// flag python selected and prepare to compile in python
