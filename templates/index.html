@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>My Compiler 0.2</title>
     <!-- Style -->
     <style></style>
@@ -22,11 +22,12 @@
             <button class="btn btn-warning" type="button" id="clear_btn" onclick="clearTextArea()">Clear</button>
             <button class="btn btn-primary" type="button" id="import_btn" onclick="files.click()">Import</button>
             <button class="btn btn-primary" type="button" id="export_btn" onclick="export_file()">Export</button>
+            
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-7">
+            <div class="col-5">
                 <form>
                     <label>Your code here:</label>
                     <!-- get the code -->
@@ -39,7 +40,7 @@
                 <!-- show compiled result -->
                 <button class="btn btn-primary" type="button" id="run_btn" onclick="show()">Run</button>
             </div>
-            <div class="col-3">
+            <div class="col-5">
                 <form>
                     <label>Your Input here:</label>
                     <textarea class="form-control" id="input_section" rows="5" onkeydown="insertTab(this, event);"></textarea>
@@ -61,7 +62,9 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- is this usable tho?? -->
+    <script src="Bootstrap-Confirmation-master/dist/bootstrap-confirmation.min.js"></script>
     <script>
     // allowing to type TAB in the code_section
     function insertTab(o, e) {
@@ -90,24 +93,27 @@
     var lang = 0;
 
     function show() {
-        // compile function not available
-        document.getElementById("output_section").value = document.getElementById("code_section").value;
+        
     }
 
     function clearTextArea() {
-        document.getElementById("code_section").value = null;
-        document.getElementById("input_section").value = null;
-        document.getElementById("output_section").value = null;
-        document.getElementById("c_btn").className = "btn btn-outline-secondary";
-        document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
-        document.getElementById("java_btn").className = "btn btn-outline-secondary";
-        document.getElementById("py_btn").className = "btn btn-outline-secondary";
-        document.getElementById("c_btn").disabled = false;
-        document.getElementById("cpp_btn").disabled = false;
-        document.getElementById("java_btn").disabled = false;
-        document.getElementById("py_btn").disabled = false;
-        document.getElementById("list").value = '';
-
+        if (document.getElementById("code_section").value !== ''){
+            var r = confirm("Are you sure to clear the text area?");
+            if (r == true) {
+                document.getElementById("code_section").value = null;
+                document.getElementById("input_section").value = null;
+                document.getElementById("output_section").value = null;
+                document.getElementById("c_btn").className = "btn btn-outline-secondary";
+                document.getElementById("cpp_btn").className = "btn btn-outline-secondary";
+                document.getElementById("java_btn").className = "btn btn-outline-secondary";
+                document.getElementById("py_btn").className = "btn btn-outline-secondary";
+                document.getElementById("c_btn").disabled = false;
+                document.getElementById("cpp_btn").disabled = false;
+                document.getElementById("java_btn").disabled = false;
+                document.getElementById("py_btn").disabled = false;
+                document.getElementById("list").value = '';
+            } 
+        }
     }
 
     function c_lang_slct() {
@@ -244,7 +250,6 @@
     function input(){
     	// code in flask?
     }
-
 
 
     */
