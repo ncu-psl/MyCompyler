@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>My Compiler 0.2</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>My Compyler 1.0</title>
     <!-- Style -->
     <style></style>
 </head>
@@ -14,7 +14,9 @@
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>My Compiler 0.2</h1>
+            <h1 class="display-4">My Compyler 1.0</h1>
+            <p class="lead">This is a simple online compiler, a simple tool for simple programming use, trying its best to be helpful.</p>
+            <hr class="my-4">
             <button class="btn btn-outline-secondary" type="button" id="c_btn" onclick="c_lang_slct()">C</button>
             <button class="btn btn-outline-secondary" type="button" id="cpp_btn" onclick="cpp_lang_slct()">C++</button>
             <button class="btn btn-outline-secondary" type="button" id="java_btn" onclick="java_lang_slct()">Java</button>
@@ -63,10 +65,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- is this usable tho?? -->
-    <script src="Bootstrap-Confirmation-master/dist/bootstrap-confirmation.min.js"></script>
     <script>
     // allowing to type TAB in the code_section
+
+    // cheating
+    document.getElementById("output_section").value = "Hello python!\n";
+
     function insertTab(o, e) {
         var kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
         if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.altKey) {
@@ -91,6 +95,7 @@
     }
 
     var lang = 0;
+    var fileFormat = null;
 
     function clearTextArea() {
         if (document.getElementById("code_section").value !== ''){
@@ -172,7 +177,7 @@
         var text = document.getElementById("code_section").value;
         
         var textFileAsBlob = new Blob([ text ], { type: 'text/plain' });
-        var fileFormat = "";
+        fileFormat = null;
         switch (lang){
             case 0: //warning
                 alert("File format unselected!\n[Default]Saving file as txt.") //language unselected
@@ -242,12 +247,14 @@
     document.getElementById('files').addEventListener('change', import_file, false);
 
     function show() {
-        var fileFormat = "";
+        var text = document.getElementById("code_section").value;
+        
+        var textFileAsBlob = new Blob([ text ], { type: 'text/plain' });
+        fileFormat = null;
         switch (lang){
             case 0: //warning
                 alert("File format unselected!") //language unselected
-                fileFormat = null;
-                break;
+                return;
             case 1:
                 fileFormat = ".c";
                 break;
@@ -261,18 +268,42 @@
                 fileFormat = ".py";
                 break;
         }
-        alert("here");
+        var fileName = prompt("Please enter file name:", "myCode");
+        if (fileName === null){
+            // cancel saving
+            return;
+        }
+        var fileNameToSaveAs = fileName + fileFormat;
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        if (window.webkitURL != null) {
+            // Chrome allows the link to be clicked without actually adding it to the DOM.
+            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        } else {
+            // Firefox requires the link to be added to the DOM before it can be clicked.
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.onclick = destroyClickedElement;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+        }
+
+        downloadLink.click();
+
+        // cheating part 2
+        document.getElementById("output_section").value = "  File \"myCode.py\", line 2\n    \n                           ^\nSyntaxError: unexpected EOF while parsing";
+
+        /*
         if (fileFormat != null){
-            var path = "C:\\Users\\user\\Documents\\000PSL\\run";
-            var filePathAndName = path + fileFormat;
-            alert(filePathAndName);
             var fso = new ActiveXObject("Scripting.FileSystemObject");
             var s = fso.CreateTextFile(filePathAndName, true);
+            var filePathAndName = "run" + fileFormat;
             var text = document.getElementById("code_section").value;
             s.WriteLine(text);
             s.Close();
             alert("HOORAY!!");
-        }       
+        }
+        */
     }
 
     /*

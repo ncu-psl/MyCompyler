@@ -10,6 +10,7 @@ import os
 filename = 'hello'
 # python
 #os.popen("cd C:\\Users\\user\\Documents\\000PSL")
+
 os.chdir("C:/Users/user/Documents/000PSL")
 process = os.popen("python "+filename+".py > out.txt")
 process.close()
