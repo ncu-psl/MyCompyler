@@ -248,7 +248,7 @@
 
     function show() {
         var text = document.getElementById("code_section").value;
-        
+
         var textFileAsBlob = new Blob([ text ], { type: 'text/plain' });
         fileFormat = null;
         switch (lang){
@@ -290,8 +290,11 @@
 
         downloadLink.click();
 
+
         // cheating part 2
-        document.getElementById("output_section").value = "  File \"myCode.py\", line 2\n    \n                           ^\nSyntaxError: unexpected EOF while parsing";
+        //document.getElementById("output_section").value = "  File \"myCode.py\", line 2\n    \n                           ^\nSyntaxError: unexpected EOF while parsing";
+
+
 
         /*
         if (fileFormat != null){
@@ -301,7 +304,6 @@
             var text = document.getElementById("code_section").value;
             s.WriteLine(text);
             s.Close();
-            alert("HOORAY!!");
         }
         */
     }
